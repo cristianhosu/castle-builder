@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/landing-page',
+    redirectTo: '/story-book',
   },
 ];
 
