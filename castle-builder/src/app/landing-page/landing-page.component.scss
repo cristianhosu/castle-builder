@@ -1,0 +1,127 @@
+.environment {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-areas:
+    "menu . baracks baracks baracks .      . a . .      .      .      .      . . .       .       .       . . ."
+    "menu . baracks baracks baracks .      . b . castle castle castle castle . . .       house1  house1  . . ."
+    "menu . baracks baracks baracks .      . . . castle castle castle castle . . .       house1  house1  . . ."
+    "menu . .       .       .       .      . . . castle castle castle castle . . .       house3  house3  . . ."
+    "menu . .       .       .       .      . . . castle castle castle castle . . .       house3  house3  . . ."
+    "menu . .       .       .       .      . . . castle castle castle castle . . stables stables stables . . ."
+    "menu . .       house2  house2  house2 . . . castle castle castle castle . . stables stables stables . . ."
+    "menu . .       house2  house2  house2 . . . castle castle castle castle c d stables stables stables . . ."
+    "menu . .       house2  house2  house2 . . . x      y      z      t      . . .       .       .       . . ."
+    "menu . .       .       .       .      . . . .      .      .      .      . . .       .       .       . . ."
+    "menu . .       .       .       .      . . . .      .      .      .      . . .       .       .       . . .";
+
+  grid-template-columns: 250px repeat(20, auto);
+  /* grid-template-rows: repeat(9, auto) repeat(2, 50px); */
+
+  background-image: url("http://localhost:4205/img/city_pavement2.png");
+  background-repeat: repeat;
+  box-shadow: 0 12px 17px 2px rgba(0, 0, 0, 0.14),
+    0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 7px 8px -4px rgba(0, 0, 0, 0.2);
+
+  .castle {
+    grid-area: castle;
+  }
+
+  .menu {
+    grid-area: menu;
+    background-image: url("http://localhost:4205/img/menu_texture.jpg");
+    background-size: cover;
+    // box-shadow: 0 12px 17px 2px rgba(0, 0, 0, 0.14),
+    //   0 5px 22px 4px rgba(0, 0, 0, 0.12), 0 7px 8px -4px rgba(0, 0, 0, 0.2);
+    padding-top: 2rem;
+
+    > div {
+      cursor: pointer;
+      font-family: var(--accent-font);
+      font-size: 2rem;
+      color: var(--accent-color);
+      padding-left: 2rem;
+      padding-bottom: 1rem;
+      transition: font-size 0.5s ease-in-out;
+      &:hover {
+        font-size: 2.4rem;
+      }
+    }
+  }
+
+  .baracks {
+    grid-area: baracks;
+    img {
+      max-width: 250px;
+    }
+  }
+
+  .stables {
+    grid-area: stables;
+    img {
+      max-width: 250px;
+    }
+  }
+
+  .castle,
+  .baracks,
+  .stables {
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .house1 {
+    grid-area: house1;
+    img {
+      max-width: 200px;
+    }
+  }
+
+  .house2 {
+    grid-area: house2;
+    img {
+      max-width: 200px;
+    }
+  }
+  .house3 {
+    grid-area: house3;
+    img {
+      max-width: 200px;
+    }
+  }
+
+  [class^="peasent"] {
+    > img {
+      max-height: 70px;
+    }
+  }
+  .peasent1 {
+    grid-area: a;
+  }
+  .peasent2 {
+    grid-area: b;
+  }
+  .peasent3 {
+    grid-area: c;
+  }
+  .peasent4 {
+    grid-area: d;
+  }
+  .guard {
+    &.x {
+      grid-area: x;
+    }
+    &.y {
+      grid-area: y;
+    }
+    &.z {
+      grid-area: z;
+    }
+    &.t {
+      grid-area: t;
+    }
+  }
+}
