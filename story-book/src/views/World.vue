@@ -32,13 +32,14 @@
 </template>
 
 <script>
+import { EventBus } from '../services/EventBus';
+
 const pages = ['FirstPage', 'About', 'OldKingdom', 'Alternatives', 'Proposal'];
 export default {
 	methods: {
 		goTo(chapter, firstPage) {
 			if (chapter == pages.length) {
-				window.history.pushState(null, null, '/landing-page');
-				// window.location = '/landing-page';
+				EventBus.$emit('navigate-away', '/landing-page');
 			} else {
 				this.$router.push({
 					name: pages[chapter],

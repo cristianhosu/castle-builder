@@ -1,5 +1,5 @@
 <template>
-	<div class="host">
+	<div class="host" :class="{ wide: currentPage === 5 }">
 		<div class="title" v-if="currentPage < 4">
 			What did Emil end up doing
 		</div>
@@ -8,11 +8,23 @@
 		</div>
 		<div class="content" v-if="currentPage === 1">
 			<div class="wall-of-text">
-				<div>Many teams... each had their own specialty - each started working independently</div>
-				<sub>One team started producing bricks, another started producing wood logs and so on</sub>
+				<div>
+					Many teams... each had their own specialty - each started working
+					independently
+				</div>
+				<sub
+					>One team started producing bricks, another started producing wood
+					logs and so on</sub
+				>
 				<div>Each team would then bring what they had to the build site</div>
-				<div>There Emil started to orchestrate the teams how each should be placed and when and where</div>
-				<sub>Everything was done on site, no need for extra space to put it all together</sub>
+				<div>
+					There Emil started to orchestrate the teams how each should be placed
+					and when and where
+				</div>
+				<sub
+					>Everything was done on site, no need for extra space to put it all
+					together</sub
+				>
 			</div>
 			<div class="team-photo">
 				<div class="team-bald">
@@ -36,7 +48,10 @@
 					<div>
 						They were tasked with building the walls.
 					</div>
-					<div>The task does not require much brains, but does require some extra strength</div>
+					<div>
+						The task does not require much brains, but does require some extra
+						strength
+					</div>
 				</div>
 				<img src="../assets/team_ogres.png" />
 			</div>
@@ -47,7 +62,8 @@
 						They were tasked with building the baracks
 					</div>
 					<div>
-						This task requires extreme organization and experience in armed combat
+						This task requires extreme organization and experience in armed
+						combat
 					</div>
 				</div>
 				<img src="../assets/team_elf.png" />
@@ -61,7 +77,8 @@
 						They were tasked with building the castle
 					</div>
 					<div>
-						This task requires great organization and some magic to protect the throne room
+						This task requires great organization and some magic to protect the
+						throne room
 					</div>
 				</div>
 				<img src="../assets/team_bald.png" />
@@ -73,15 +90,48 @@
 						He was the one that orchestrated everything
 					</div>
 					<div>
-						He was responsible with organizing everything and assuring that all falls into place
+						He was responsible with organizing everything and assuring that all
+						falls into place
 					</div>
 				</div>
 				<img src="../assets/hero_avatar.png" />
 			</div>
 		</div>
-		<div class="network" v-if="currentPage === 4">
+		<div class="content" v-if="currentPage === 4">
+			<div class="wall-of-text">
+				<div>Each micro app is built with the target as Web Components</div>
+				<sub>(Web Components are nice)</sub>
+				<div>
+					The result of the build will be one ore more files bundled with their
+					respective framework
+				</div>
+				<sub
+					>(Having the framework bundled is not nice, as it increases the bundle
+					size)</sub
+				>
+				<sub
+					>(Having the framework bundled is nice, as it allows devs to use
+					different versions of the framework)</sub
+				>
+				<div>
+					The resulted bundle will be hosted as static files, where ever
+				</div>
+				<sub>(Can be a CDN, a static server, behind nginx....)</sub>
+				<div>The Shell app has the config for each micro app</div>
+				<div>
+					The Shell app has the responsability to load each module when called
+					for
+				</div>
+			</div>
+		</div>
+		<div class="network" v-if="currentPage === 5">
 			<div class="graph">
-				<d3-network :net-nodes="nodes" :net-links="links" :options="networkOptions" @node-click="nodeSelected" />
+				<d3-network
+					:net-nodes="nodes"
+					:net-links="links"
+					:options="networkOptions"
+					@node-click="nodeSelected"
+				/>
 			</div>
 			<div class="details">
 				<div class="accent big" v-if="selectedNode">
@@ -91,7 +141,9 @@
 					{{ selectedNode.details.scope }}
 				</div>
 				<div v-if="selectedNode">
-					<div v-for="item in selectedNode.details.description" :key="item">- {{ item }}</div>
+					<div v-for="item in selectedNode.details.description" :key="item">
+						- {{ item }}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -103,7 +155,7 @@ import D3Network from 'vue-d3-network';
 
 export default {
 	components: {
-		D3Network,
+		D3Network
 	},
 	data() {
 		return {
@@ -122,9 +174,9 @@ export default {
 							'Handles the injection of the entry points into the DOM',
 							'Handles the generic layout of the app',
 							'Defines generic styles (mostly by using CSS variables)',
-							'It does not handle micro app specific routing',
-						],
-					},
+							'It does not handle micro app specific routing'
+						]
+					}
 				},
 				{
 					id: 2,
@@ -137,9 +189,9 @@ export default {
 							'Handles one business domain',
 							'Can be developed independently',
 							'Can run independently without the shell',
-							'Defines entry points and registers them as Web Components',
-						],
-					},
+							'Defines entry points and registers them as Web Components'
+						]
+					}
 				},
 				{
 					id: 21,
@@ -148,8 +200,11 @@ export default {
 					details: {
 						title: 'Microapp Entry Component',
 						scope: 'The primary page',
-						description: ['The micro app internal giblets all get loaded here', 'Just as any other boring old monolithic app'],
-					},
+						description: [
+							'The micro app internal giblets all get loaded here',
+							'Just as any other boring old monolithic app'
+						]
+					}
 				},
 				{
 					id: 22,
@@ -158,8 +213,8 @@ export default {
 					details: {
 						title: 'Microapp Landing Page',
 						scope: 'First page the user sees',
-						description: ['Dashboard page maybe?'],
-					},
+						description: ['Dashboard page maybe?']
+					}
 				},
 				{
 					id: 23,
@@ -168,8 +223,8 @@ export default {
 					details: {
 						title: 'Microapp Detail Page',
 						scope: 'Any other page in the app',
-						description: ['Any kind of page...'],
-					},
+						description: ['Any kind of page...']
+					}
 				},
 				{
 					id: 3,
@@ -182,9 +237,9 @@ export default {
 							'Handles one business domain',
 							'Can be developed independently',
 							'Can run independently without the shell',
-							'Defines entry points and registers them as Web Components',
-						],
-					},
+							'Defines entry points and registers them as Web Components'
+						]
+					}
 				},
 				{
 					id: 31,
@@ -193,8 +248,11 @@ export default {
 					details: {
 						title: 'Microapp Entry Component',
 						scope: 'The primary page',
-						description: ['The micro app internal giblets all get loaded here', 'Just as any other boring old monolithic app'],
-					},
+						description: [
+							'The micro app internal giblets all get loaded here',
+							'Just as any other boring old monolithic app'
+						]
+					}
 				},
 				{
 					id: 32,
@@ -205,9 +263,9 @@ export default {
 						scope: 'The navigation component for the MicroApp',
 						description: [
 							'Gets loaded by the shell app in a dedicated space for navigation',
-							'Handles internal navigation for the microapp',
-						],
-					},
+							'Handles internal navigation for the microapp'
+						]
+					}
 				},
 				{
 					id: 33,
@@ -216,8 +274,8 @@ export default {
 					details: {
 						title: 'Microapp List Page',
 						scope: 'A list of... stuff',
-						description: ["It's a list... what more can I say"],
-					},
+						description: ["It's a list... what more can I say"]
+					}
 				},
 				{
 					id: 34,
@@ -226,9 +284,11 @@ export default {
 					details: {
 						title: 'Microapp Detail Page',
 						scope: 'A detail page',
-						description: ['A detail page for one of the items in the list page...'],
-					},
-				},
+						description: [
+							'A detail page for one of the items in the list page...'
+						]
+					}
+				}
 			],
 			links: [
 				{
@@ -236,64 +296,64 @@ export default {
 					tid: 2,
 					sid: 1,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#eb4417',
+					_color: '#eb4417'
 				},
 				{
 					name: 'Entry point',
 					tid: 21,
 					sid: 2,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#8B80F9',
+					_color: '#8B80F9'
 				},
 				{
 					name: 'Routed /app1/page1',
 					tid: 22,
 					sid: 21,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#8B80F9',
+					_color: '#8B80F9'
 				},
 				{
 					name: 'Routed /app1/page2/:id',
 					tid: 23,
 					sid: 21,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#8B80F9',
+					_color: '#8B80F9'
 				},
 				{
 					name: 'Routed /app2',
 					tid: 3,
 					sid: 1,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#eb4417',
+					_color: '#eb4417'
 				},
 				{
 					name: 'Entry point',
 					tid: 31,
 					sid: 3,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#E4C1F9',
+					_color: '#E4C1F9'
 				},
 				{
 					name: '/app2/list',
 					tid: 33,
 					sid: 31,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#E4C1F9',
+					_color: '#E4C1F9'
 				},
 				{
 					name: '/app2/list/:id',
 					tid: 34,
 					sid: 33,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#E4C1F9',
+					_color: '#E4C1F9'
 				},
 				{
 					name: 'MicroApp Menu',
 					tid: 32,
 					sid: 3,
 					_svgAttrs: { 'stroke-width': 8, opacity: 0.6 },
-					_color: '#E4C1F9',
-				},
+					_color: '#E4C1F9'
+				}
 			],
 			networkOptions: {
 				canvas: false,
@@ -307,16 +367,16 @@ export default {
 					X: 1,
 					Y: 1,
 					Center: false,
-					ManyBody: true,
-				},
+					ManyBody: true
+				}
 			},
-			selectedNode: null,
+			selectedNode: null
 		};
 	},
 	watch: {
 		$route(to) {
 			this.currentPage = to.params.page;
-		},
+		}
 	},
 	mounted() {
 		this.currentPage = parseInt(this.$router.currentRoute.params.page) || 1;
@@ -324,17 +384,21 @@ export default {
 	methods: {
 		nodeSelected: function(event, node) {
 			this.selectedNode = node;
-		},
-	},
+		}
+	}
 };
 </script>
 
 <style lang="scss" scoped>
 .host {
-	padding: 5rem 10rem;
+	padding: 10rem 10rem;
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+
+	&.wide {
+		padding: 5rem 10rem;
+	}
 
 	> .title {
 		font-family: var(--accent-font);

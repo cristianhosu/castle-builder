@@ -8,24 +8,33 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-const apps = [
+export const apps = [
   {
     appName: 'story-book',
     tagName: 'story-book-home',
     files: ['http://localhost:4201/story-book.js'],
     loaded: false,
+    flags: {
+      disabled: false,
+    },
   },
   {
     appName: 'castle-baracks',
     tagName: 'castle-baracks',
     files: [],
     loaded: false,
+    flags: {
+      disabled: true,
+    },
   },
   {
     appName: 'castle',
-    tagName: 'castle',
-    files: [],
+    tagName: 'castle-app',
+    files: ['http://localhost:4203/main.js', 'http://localhost:4203/throne.js'],
     loaded: false,
+    flags: {
+      disabled: false,
+    },
   },
   {
     appName: 'castle-stables',
@@ -37,12 +46,18 @@ const apps = [
       'http://localhost:4202/styles.css',
     ],
     loaded: false,
+    flags: {
+      disabled: true,
+    },
   },
   {
     appName: 'baracks',
     tagName: 'castle-baracks',
     files: [],
     loaded: false,
+    flags: {
+      disabled: true,
+    },
   },
 ];
 
@@ -98,6 +113,10 @@ export class ShellComponent implements AfterViewInit {
 
   createTag(tag: string, element: ElementRef) {
     const childElement = document.createElement(tag);
+    childElement.addEventListener(
+      'navigate-away',
+      this.onNavigateAway.bind(this)
+    );
     // childElement.innerText = appName;
     if (element.nativeElement.firstChild) {
       element.nativeElement.removeChild(element.nativeElement.firstChild);
@@ -125,5 +144,11 @@ export class ShellComponent implements AfterViewInit {
         resolve({ script: src, loaded: true, status: 'Loaded' });
       }
     });
+  }
+
+  private onNavigateAway(event) {
+    const newPath = event.detail[0] || '/';
+    console.log(newPath);
+    this.router.navigateByUrl(newPath);
   }
 }

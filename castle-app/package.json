@@ -1,11 +1,15 @@
 {
-  "name": "castle-app",
-  "version": "1.0.0",
-  "description": "The kings castle",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT"
+	"name": "castle-app",
+	"version": "1.0.0",
+	"description": "The kings castle",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "node build.js && static-server -c * -p 4203 ./dist"
+	},
+	"author": "",
+	"license": "MIT",
+	"devDependencies": {
+		"glob": "^7.1.6"
+	}
 }

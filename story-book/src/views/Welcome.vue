@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="container" @keyup.left="prevPage()" @keyup.right="nextPage()">
 		<div class="prev" @click="prevPage()">&lt;</div>
 		<router-view />
 		<div class="next" @click="nextPage()">&gt;</div>
@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { EventBus } from '../services/EventBus';
 const pages = [
 	{ pathName: 'FirstPage', params: {} },
 	{ pathName: 'About', params: {} },
@@ -21,6 +22,7 @@ const pages = [
 	{ pathName: 'Proposal', params: { page: 2 } },
 	{ pathName: 'Proposal', params: { page: 3 } },
 	{ pathName: 'Proposal', params: { page: 4 } },
+	{ pathName: 'Proposal', params: { page: 5 } }
 ];
 export default {
 	computed: {
@@ -29,23 +31,33 @@ export default {
 			get() {
 				const currentRoute = this.$router.currentRoute;
 				return pages.findIndex(
-					(item) => item.pathName === currentRoute.name && JSON.stringify(item.params) === JSON.stringify(currentRoute.params)
+					item =>
+						item.pathName === currentRoute.name &&
+						JSON.stringify(item.params) === JSON.stringify(currentRoute.params)
 				);
-			},
-		},
+			}
+		}
 	},
 	methods: {
 		prevPage() {
 			if (this.currentPage > 0) {
-				this.$router.push({ name: pages[this.currentPage - 1].pathName, params: pages[this.currentPage - 1].params });
+				this.$router.push({
+					name: pages[this.currentPage - 1].pathName,
+					params: pages[this.currentPage - 1].params
+				});
 			}
 		},
 		nextPage() {
 			if (this.currentPage < pages.length - 1) {
-				this.$router.push({ name: pages[this.currentPage + 1].pathName, params: pages[this.currentPage + 1].params });
+				this.$router.push({
+					name: pages[this.currentPage + 1].pathName,
+					params: pages[this.currentPage + 1].params
+				});
+			} else {
+				EventBus.$emit('navigate-away', '/landing-page');
 			}
-		},
-	},
+		}
+	}
 };
 </script>
 

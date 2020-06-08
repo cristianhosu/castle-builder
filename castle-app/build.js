@@ -18,11 +18,12 @@ fs.readdir(`${__dirname}/src`, { encoding: 'UTF-8' }, (err, files) => {
 	console.log(componentFolders);
 
 	componentFolders.forEach((folder) => {
-		glob(`${__dirname}/${folder}/*.js`, function (err, files) {
+		console.log(`${__dirname}/src/${folder}`);
+		glob(`${__dirname}/src/${folder}/*.js`, function (err, files) {
 			console.log(files);
 			let js = '';
 			files.forEach((item) => {
-				buildFile(`${__dirname}/${folder}`, item);
+				buildFile(`${__dirname}/src/${folder}`, item);
 			});
 		});
 	});
@@ -30,9 +31,16 @@ fs.readdir(`${__dirname}/src`, { encoding: 'UTF-8' }, (err, files) => {
 
 function buildFile(basePath, jsPath) {
 	const js = fs.readFileSync(`${jsPath}`, 'utf8');
-	const hasTemplate = /<!-- ref:(.*) -->/gm.exec(js);
-	const file = fs.readFileSync(path.resolve(basePath, hasTemplate[1]), 'utf8');
 
-	let composedFile = js.replace(hasTemplate[0], file.trim());
+	const templates = js.match(/<!-- ref:(.*) -->/gm); // /<!-- ref:(.*) -->/gm.exec(js);
+	console.log(JSON.stringify(templates));
+
+	let composedFile = js;
+
+	templates.forEach((item) => {
+		const url = /<!-- ref:((.*\.html)|(.*\.css)) -->/gm.exec(item);
+		const file = fs.readFileSync(path.resolve(basePath, url[1]), 'utf8');
+		composedFile = composedFile.replace(url[0], file.trim());
+	});
 	fs.writeFileSync(`${__dirname}/dist/${path.basename(jsPath)}`, composedFile);
 }

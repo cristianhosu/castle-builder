@@ -125,3 +125,22 @@
     }
   }
 }
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000ac;
+  display: none;
+  place-content: center;
+  place-items: center;
+  &.show {
+    display: flex;
+  }
+  .modal {
+    width: 592px;
+    height: 342px;
+  }
+}

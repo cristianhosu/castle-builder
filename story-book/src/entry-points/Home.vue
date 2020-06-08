@@ -5,12 +5,18 @@
 </template>
 
 <script>
+import { EventBus } from '../services/EventBus';
 import router from '../router';
 
 export default {
 	router,
 	name: 'Home',
 	components: {},
+	mounted() {
+		EventBus.$on('navigate-away', url => {
+			this.$emit('navigate-away', url);
+		});
+	}
 };
 </script>
 

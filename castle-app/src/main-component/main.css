@@ -1,0 +1,77 @@
+.host {
+	height: 100%;
+	width: 100%;
+	background-image: url('http://localhost:4205/img/menu_texture.jpg');
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+button {
+	background: none;
+	border: none;
+	font-family: var(--accent-font);
+	font-size: 2rem;
+	color: var(--accent-color);
+	padding: 0.4rem 0.8rem;
+}
+button:hover {
+	background-color: #000000ac;
+	cursor: pointer;
+}
+
+.page {
+	background-image: url('http://localhost:4205/img/royal_staircase.png');
+	background-repeat: no-repeat;
+	background-size: auto;
+	height: 417px;
+	width: 626px;
+	display: grid;
+	grid-template-areas:
+		'.       library . .      .'
+		'.       .       . .      .'
+		'dungeon .       . throne .';
+}
+
+.dungeon-entrance {
+	grid-area: dungeon;
+}
+
+.libary-entrance {
+	grid-area: library;
+}
+
+.throne-entrance {
+	grid-area: throne;
+}
+
+.library-entrance:hover,
+.throne-entrance:hover,
+.dungeon-entrance:hover {
+	cursor: pointer;
+}
+
+.popup {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #000000ac;
+	display: none;
+	place-content: center;
+	place-items: center;
+}
+
+.popup.show {
+	display: flex;
+}
+
+.popup > .modal {
+	width: 592px;
+	height: 342px;
+}
+
+.popup > .modal > img {
+	max-height: 342px;
+}
