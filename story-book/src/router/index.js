@@ -6,6 +6,7 @@ import AboutComponent from '@/entry-points/About';
 import AlternativesComponent from '@/entry-points/Alternatives';
 import ProposalComponent from '@/entry-points/Proposal';
 import OldKingdomComponent from '@/entry-points/OldKingdom';
+import AppendixComponent from '@/entry-points/Appendix';
 
 Vue.use(VueRouter);
 
@@ -18,41 +19,47 @@ const routes = [
 			{
 				path: '',
 				name: 'FirstPage',
-				component: WorldComponent,
+				component: WorldComponent
 			},
 			{
 				path: 'about',
 				name: 'About',
-				component: AboutComponent,
+				component: AboutComponent
 			},
 			{
 				path: 'the-problem/:page',
 				name: 'OldKingdom',
-				component: OldKingdomComponent,
+				component: OldKingdomComponent
 			},
 			{
 				path: 'alternatives/:page',
 				name: 'Alternatives',
-				component: AlternativesComponent,
+				component: AlternativesComponent
 			},
 			{
 				path: 'proposal/:page',
 				name: 'Proposal',
-				component: ProposalComponent,
+				component: ProposalComponent
 			},
-		],
+			{
+				path: 'appendix',
+				name: 'Appendix',
+				component: AppendixComponent
+			}
+		]
 	},
 	{
 		path: '/world',
 		name: 'World',
-		component: () => import(/* webpackChunkName: "about" */ '../views/World.vue'),
-	},
+		component: () =>
+			import(/* webpackChunkName: "about" */ '../views/World.vue')
+	}
 ];
 
 const router = new VueRouter({
 	mode: 'history',
 	base: '/story-book/',
-	routes,
+	routes
 });
 
 export default router;

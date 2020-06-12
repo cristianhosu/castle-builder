@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'castle-builder';
   constructor(private router: Router) {}
   goHome() {
-    this.router.navigateByUrl('/castle-stables');
+    this.router.navigateByUrl('/story-book/');
   }
 }

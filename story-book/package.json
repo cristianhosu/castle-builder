@@ -6,7 +6,8 @@
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
 		"lint": "vue-cli-service lint",
-		"build:wc": "vue-cli-service build --target wc --inline-vue \"src/entry-points/*.vue\" && static-server -p 4201 -c * ./dist"
+		"build:wc": "vue-cli-service build --target wc --inline-vue \"src/entry-points/*.vue\" && static-server -p 4201 -c * ./dist",
+		"build:wc-prod": "vue-cli-service build --target wc --inline-vue \"src/entry-points/*.vue\""
 	},
 	"dependencies": {
 		"core-js": "^3.6.5",

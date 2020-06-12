@@ -47,7 +47,7 @@ export const apps = [
     ],
     loaded: false,
     flags: {
-      disabled: true,
+      disabled: false,
     },
   },
   {

@@ -25,6 +25,10 @@
 					Chapter V
 					<div class="sub-title" @click="goTo(5)">The new kingdom</div>
 				</div>
+				<div>
+					Appendicitis
+					<div class="sub-title" @click="goToGoodReads()">Good reads</div>
+				</div>
 			</div>
 			<img src="../assets/hero_avatar.png" />
 		</div>
@@ -46,6 +50,9 @@ export default {
 					params: firstPage ? { page: 1 } : {}
 				});
 			}
+		},
+		goToGoodReads() {
+			this.$router.push({ name: 'Appendix' });
 		}
 	}
 };
