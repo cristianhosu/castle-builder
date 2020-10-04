@@ -6,6 +6,8 @@ It uses WebComponents as the basis.
 
 All apps are configured to be built as WebComponents and have a script to start ***static-server*** to serve the resulting files as static js and css
 
+Part of the presentation for DevTalks 2020 - https://www.youtube.com/watch?v=BKsNuVOtHw4
+
 #castle-builder
 
 - represents the Shell Application
