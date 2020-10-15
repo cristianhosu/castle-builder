@@ -49,6 +49,9 @@ export const apps = [
     flags: {
       disabled: false,
     },
+    appProperties: {
+      key: 'value',
+    },
   },
   {
     appName: 'baracks',

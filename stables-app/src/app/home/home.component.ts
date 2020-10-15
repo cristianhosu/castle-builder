@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -9,6 +9,8 @@ import { Location } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
   constructor(private router: Router, private location: Location) {}
+
+  @Input() baseRoute;
 
   ngOnInit(): void {
     this.router.navigateByUrl(this.location.path());
